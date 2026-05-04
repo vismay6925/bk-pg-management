@@ -1,1 +1,1 @@
-web: gunicorn bk_pg_management.wsgi
+web: python manage.py migrate && gunicorn bk_pg_management.wsgi:application
