@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BK PG Dashboard</title>
+
+    <!-- Fonts + Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7a4b62b0a4.js" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+            color:white;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding:20px 40px;
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(12px);
+        }
+
+        .logo{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size:26px;
+            font-weight:600;
+            background:linear-gradient(90deg,#00dbde,#fc00ff);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .status{
+            padding:6px 14px;
+            border-radius:20px;
+            background:linear-gradient(135deg,#00c853,#64dd17);
+            font-size:13px;
+        }
+
+        /* STATS */
+        .stats{
+            width:90%;
+            margin:30px auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+            gap:20px;
+        }
+
+        .stat{
+            background:rgba(255,255,255,0.08);
+            padding:25px;
+            border-radius:15px;
+            text-align:center;
+            backdrop-filter:blur(10px);
+            transition:0.3s;
+        }
+
+        .stat:hover{
+            transform:translateY(-6px);
+        }
+
+        .stat h2{
+            font-size:32px;
+            color:#00e5ff;
+        }
+
+        /* ACTION CARDS */
+        .cards{
+            width:90%;
+            margin:30px auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.09);
+            padding:25px;
+            border-radius:18px;
+            backdrop-filter:blur(12px);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card h2{
+            margin-bottom:10px;
+        }
+
+        .card p{
+            opacity:0.85;
+            margin-bottom:15px;
+        }
+
+        .btn{
+            padding:10px 18px;
+            border-radius:10px;
+            text-decoration:none;
+            color:white;
+            font-weight:500;
+            display:inline-block;
+        }
+
+        .blue{background:linear-gradient(135deg,#00c6ff,#0072ff);}
+        .purple{background:linear-gradient(135deg,#7f00ff,#e100ff);}
+        .green{background:linear-gradient(135deg,#00b09b,#96c93d);}
+        .orange{background:linear-gradient(135deg,#ff9966,#ff5e62);}
+        .cyan{background:linear-gradient(135deg,#36d1dc,#5b86e5);}
+        .red{background:linear-gradient(135deg,#ff416c,#ff4b2b);}
+
+        .btn:hover{
+            transform:scale(1.05);
+        }
+
+        /* DOWNLOAD BUTTON */
+        .download-section{
+            text-align:center;
+            margin:40px 0 60px;
+        }
+
+        .download-btn{
+            padding:14px 30px;
+            font-size:16px;
+            border-radius:12px;
+            background:linear-gradient(135deg,#ffd200,#f7971e);
+            color:black;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        .download-btn:hover{
+            transform:scale(1.05);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">BK PG Management</div>
+    <div class="status">● Active</div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+
+    <div class="stat">
+        <h2>{{ total_tenants }}</h2>
+        <p>Total Tenants</p>
+    </div>
+
+    <div class="stat">
+        <h2>{{ total_beds }}</h2>
+        <p>Total Beds</p>
+    </div>
+
+    <div class="stat">
+        <h2>{{ occupied_beds }}</h2>
+        <p>Occupied Beds</p>
+    </div>
+
+    <div class="stat">
+        <h2>{{ free_beds }}</h2>
+        <p>Free Beds</p>
+    </div>
+
+    <div class="stat">
+        <h2>{{ pending_payments }}</h2>
+        <p>Pending Payments</p>
+    </div>
+
+</div>
+
+<!-- ACTION CARDS -->
+<div class="cards">
+
+    <div class="card">
+        <h2>Add Tenant</h2>
+        <p>Add new tenant and assign bed.</p>
+        <a href="/admin/pgapp/tenant/add/" class="btn blue">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>View Tenants</h2>
+        <p>See all tenant records.</p>
+        <a href="/admin/pgapp/tenant/" class="btn purple">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>Add Bed</h2>
+        <p>Create new bed entry.</p>
+        <a href="/admin/pgapp/bed/add/" class="btn green">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>View Beds</h2>
+        <p>Check all beds and occupancy.</p>
+        <a href="/admin/pgapp/bed/" class="btn cyan">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>Add Room</h2>
+        <p>Create rooms for bed grouping.</p>
+        <a href="/admin/pgapp/room/add/" class="btn orange">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>View Rooms</h2>
+        <p>Check all rooms and capacity.</p>
+        <a href="/admin/pgapp/room/" class="btn purple">Open</a>
+    </div>
+
+    <div class="card">
+        <h2>Bed Occupancy</h2>
+        <p>Visual room-wise bed status.</p>
+        <a href="/beds/" class="btn red">View</a>
+    </div>
+
+</div>
+
+<!-- ✅ MOVED DOWNLOAD BUTTON HERE -->
+<div class="download-section">
+    <a href="/download/" class="download-btn">
+        ⬇ Download All Data
+    </a>
+</div>
+
+</body>
+</html>

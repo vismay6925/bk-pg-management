@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body {
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+            color:white;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            padding:35px;
+            border-radius:15px;
+            width:320px;
+            text-align:center;
+            box-shadow:0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom:20px;
+            font-weight:600;
+        }
+
+        input {
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:none;
+            border-radius:8px;
+            outline:none;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .toggle {
+            position:absolute;
+            right:10px;
+            top:50%;
+            transform:translateY(-50%);
+            cursor:pointer;
+            color:black;
+            font-size:12px;
+        }
+
+        button {
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:none;
+            border-radius:8px;
+            background:linear-gradient(135deg,#00c6ff,#0072ff);
+            color:white;
+            font-weight:500;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover {
+            transform:scale(1.05);
+        }
+
+        .error {
+            color:#ff4b2b;
+            margin-bottom:10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>BK PG Login</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="username" placeholder="Username" required>
+
+        <div class="password-box">
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <span class="toggle" onclick="togglePassword()">Show</span>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+</div>
+
+<!-- 🔥 SHOW/HIDE PASSWORD -->
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+</script>
+
+</body>
+</html>

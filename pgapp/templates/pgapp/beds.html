@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bed Occupancy</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f6fa;
+            margin: 0;
+        }
+
+        .header {
+            background: #2f3640;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .bed {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .free {
+            background: #44bd32;
+        }
+
+        .occupied {
+            background: #e84118;
+        }
+
+        .bed small {
+            display: block;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Bed Occupancy Dashboard
+</div>
+
+<div class="grid">
+    {% for bed in beds %}
+        {% if bed.status == 'free' %}
+            <a href="/admin/pgapp/tenant/add/">
+                <div class="bed free">
+                    Bed {{ bed.number }}
+                </div>
+            </a>
+        {% else %}
+            <a href="/admin/pgapp/tenant/">
+                <div class="bed occupied">
+                    Bed {{ bed.number }}
+                    <small>{{ bed.tenant }}</small>
+                </div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+</body>
+</html>
